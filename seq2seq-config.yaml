@@ -1,0 +1,52 @@
+experiment_name: 'seq2seq-translation'
+
+task: 'train'
+src_lang: 'chinese'
+tgt_lang: 'english'
+max_length: 100
+make_dict: False
+data_preprocessing: False
+
+ckpt_dir: 'ckpt/'
+
+training:
+    num_epochs: 20
+    learning_rate: 0.01
+    # options = ['adam', 'adadelta', 'rmsprop']
+    optimizer: 'sgd'
+
+
+embedding:
+    cn_embed_path: 'data/sgns.merge.bigram.bz2'
+    en_embed_path: 'data/wiki.en.vec'
+    cur_cn_embedding_path: 'data/cn_embed.pkl'
+    cur_en_embedding_path: 'data/en_embed.pkl'
+
+model:
+    fc_dim: 100
+    fc_dropout: 0.1
+    name: 'seq2seq'
+    embed_size: 300
+    batch_size: 1
+    embedding_freeze: False
+    encoder:
+        hidden_size: 150
+        num_layers: 1
+        bidirectional: False
+        dropout: 0.5
+    decoder:
+        hidden_size: 150
+        num_layers: 1
+        bidirectional: False
+        dropout: 0.5
+
+result:
+    filename: 'result.txt'
+    filepath: 'res/'
+
+
+
+
+
+
+
